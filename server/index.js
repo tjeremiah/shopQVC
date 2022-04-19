@@ -34,3 +34,5 @@ app.listen(port, function () {
     console.log(`your server is listening on ${port}`)
 });
 
+module.exports = app;
+

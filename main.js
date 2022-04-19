@@ -1,13 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Provider from 'react-redux';
+'use strict'
 
-import store from './store'
+const {db} = require('./server/db')
+const app = require('./server')
+const PORT = 1337
 
-
-ReactDOM.render (
-    <Provider store={store}>
-        <div>Hello World!</div>
-    </Provider>,
-    document.getElementById("app")
-);
+db.sync() // if you update your db schemas, make sure you drop the tables first and then recreate them
+  .then(() => {
+    console.log('db synced')
+    app.listen(PORT, () => console.log(`studiously serving silly sounds on port ${PORT}`))
+  })
